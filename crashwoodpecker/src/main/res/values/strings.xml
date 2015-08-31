@@ -1,0 +1,6 @@
+<resources>
+    <string name="crash_app_name">Woodpecker</string>
+
+    <string name="hello_woodpecker">Hello Crash Woodpecker!</string>
+    <string name="action_settings">Settings</string>
+</resources>
