@@ -1,6 +1,7 @@
 package me.drakeet.demo
 
 import android.app.Application
+import com.squareup.leakcanary.LeakCanary
 import me.drakeet.library.CrashWoodpecker
 
 /**
@@ -10,6 +11,8 @@ public class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CrashWoodpecker(this).fly()
+//        CrashWoodpecker2(this).fly()
+        CrashWoodpecker.fly().to(this)
+        LeakCanary.install(this);
     }
 }
