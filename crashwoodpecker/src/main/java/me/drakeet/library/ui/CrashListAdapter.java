@@ -1,22 +1,3 @@
-/*
- * Copyright (C) 2015 Drakeet <drakeet.me@gmail.com>
- *
- * This file is part of Meizhi
- *
- * Meizhi is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Meizhi is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Meizhi.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package me.drakeet.library.ui;
 
 import android.graphics.Typeface;
@@ -32,7 +13,8 @@ import me.drakeet.library.R;
 import me.drakeet.library.StringStyleUtils;
 
 /**
- * Created by drakeet on 6/20/15.
+ * Created by drakeet(http://drakeet.me)
+ * Date: 9/2/15 12:42
  */
 public class CrashListAdapter extends RecyclerView.Adapter<CrashListAdapter.ViewHolder> {
 
@@ -68,15 +50,17 @@ public class CrashListAdapter extends RecyclerView.Adapter<CrashListAdapter.View
             }
 
             if (crash.contains(mPackageName)) {
+                holder.itemView.setSelected(true);
                 int indexOfC = crash.indexOf("(");
                 String atPackage = crash.substring(0, indexOfC);
                 SpannableStringBuilder builder = new SpannableStringBuilder(atPackage).append(
                         StringStyleUtils.format(holder.title.getContext(),
-                                crash.substring(indexOfC), R.style.LineTextAppearance));
+                                " " + crash.substring(indexOfC), R.style.LineTextAppearance));
                 CharSequence title = builder.subSequence(0, builder.length());
                 holder.title.setText(title);
             }
             else {
+                holder.itemView.setSelected(false);
                 holder.title.setText(crash);
             }
         }

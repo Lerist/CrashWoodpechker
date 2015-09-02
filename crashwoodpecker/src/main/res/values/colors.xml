@@ -3,6 +3,7 @@
 
     <color name="windowBackground">#373636</color>
     <color name="trace_text">#FF6B68</color>
-    <color name="my_fault">#d0d9ff</color>
+    <color name="my_fault">#E040FB</color>
+    <color name="item_crash_selected">#5a000000</color>
 
 </resources>
