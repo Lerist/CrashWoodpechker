@@ -10,8 +10,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import me.drakeet.library.model.CrashCause;
+import me.drakeet.library.model.CrashLogs;
 import me.drakeet.library.ui.CatchActivity;
 
 /**
@@ -112,15 +116,23 @@ public class CrashWoodpecker implements Thread.UncaughtExceptionHandler {
 
     private void startCatchActivity(Throwable throwable) {
         CrashCause crashCause = new CrashCause();
-        crashCause.stackTraceElements = throwable.getStackTrace();
+        Writer writer = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(writer);
+        throwable.printStackTrace(printWriter);
+        printWriter.close();
+        crashCause.stackTrace = writer.toString();
         mCrashLogs.crashCauses.add(crashCause);
 
-        Throwable nextCause = throwable.getCause();
-        while (nextCause != null) {
+        Throwable next = throwable.getCause();
+        while (next != null) {
             CrashCause nextCrashCause = new CrashCause();
-            nextCrashCause.stackTraceElements = nextCause.getStackTrace();
+            writer = new StringWriter();
+            printWriter = new PrintWriter(writer);
+            next.printStackTrace(printWriter);
+            printWriter.close();
+            nextCrashCause.stackTrace = writer.toString();
             mCrashLogs.crashCauses.add(crashCause);
-            nextCause = nextCause.getCause();
+            next = next.getCause();
         }
 
         Intent intent = new Intent();

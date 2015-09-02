@@ -1,4 +1,4 @@
-package me.drakeet.library;
+package me.drakeet.library.model;
 
 import java.util.ArrayList;
 
