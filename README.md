@@ -9,7 +9,7 @@ A Uncaught Exception Handler library like as Square's [LeakCanary](https://githu
 In your `build.gradle`:
 
 ```gradle
-  //It may not take effect in maven, I upload in 21:03 Set 2, so that please waiting for it.
+  //I uploaded it in 21:03 Set 2, so that it may not take effect in maven, please waiting for a moment.
   dependencies {
    debugCompile 'me.drakeet.library:crashwoodpechker:0.9'
   }
