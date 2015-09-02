@@ -11,8 +11,6 @@ public class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-//        CrashWoodpecker2(this).fly()
         CrashWoodpecker.fly().to(this)
-        LeakCanary.install(this);
     }
 }
