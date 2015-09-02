@@ -4,11 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import com.google.gson.Gson;
-import java.util.ArrayList;
 import me.drakeet.library.R;
-import me.drakeet.library.model.CrashCause;
-import me.drakeet.library.model.CrashLogs;
 
 /**
  * Created by drakeet(http://drakeet.me)
@@ -17,9 +13,9 @@ import me.drakeet.library.model.CrashLogs;
 public class CatchActivity extends AppCompatActivity {
 
     public final static String EXTRA_CRASH_LOGS = "extra_crash_logs";
-    private ArrayList<CrashCause> mCrashList;
     private RecyclerView mRecyclerView;
     CrashListAdapter mCrashListAdapter;
+    private String[] mCrashArray;
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +25,7 @@ public class CatchActivity extends AppCompatActivity {
     }
 
     private void parseIntent() {
-        String json = getIntent().getStringExtra(EXTRA_CRASH_LOGS);
-        CrashLogs crashLogs = new Gson().fromJson(json, CrashLogs.class);
-        mCrashList = crashLogs.crashCauses;
+        mCrashArray = getIntent().getStringArrayExtra(EXTRA_CRASH_LOGS);
     }
 
     private void setUpRecyclerView() {
@@ -40,7 +34,7 @@ public class CatchActivity extends AppCompatActivity {
                 new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        mCrashListAdapter = new CrashListAdapter(this, mCrashList);
+        mCrashListAdapter = new CrashListAdapter(this, mCrashArray);
         mRecyclerView.setAdapter(mCrashListAdapter);
 
         //mMeizhiListAdapter.setOnMeizhiTouchListener(getOnMeizhiTouchListener());

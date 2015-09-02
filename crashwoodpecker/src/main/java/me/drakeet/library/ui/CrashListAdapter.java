@@ -26,9 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.List;
 import me.drakeet.library.R;
-import me.drakeet.library.model.CrashCause;
 
 /**
  * Created by drakeet on 6/20/15.
@@ -37,11 +35,11 @@ public class CrashListAdapter extends RecyclerView.Adapter<CrashListAdapter.View
 
     public static final String TAG = "CrashListAdapter";
 
-    private List<CrashCause> mList;
+    private String[] mData;
     private Context mContext;
 
-    public CrashListAdapter(Context context, @NonNull List<CrashCause> causeList) {
-        mList = causeList;
+    public CrashListAdapter(Context context, @NonNull String[] strings) {
+        mData = strings;
         mContext = context;
     }
 
@@ -52,9 +50,9 @@ public class CrashListAdapter extends RecyclerView.Adapter<CrashListAdapter.View
     }
 
     @Override public void onBindViewHolder(final ViewHolder holder, final int position) {
-        CrashCause crash = mList.get(position);
-        if (crash.stackTrace != null) {
-            holder.titleView.setText(crash.stackTrace);
+        String crash = mData[position];
+        if (crash != null) {
+            holder.titleView.setText(crash);
         }
     }
 
@@ -63,7 +61,7 @@ public class CrashListAdapter extends RecyclerView.Adapter<CrashListAdapter.View
     }
 
     @Override public int getItemCount() {
-        return mList.size();
+        return mData.length;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

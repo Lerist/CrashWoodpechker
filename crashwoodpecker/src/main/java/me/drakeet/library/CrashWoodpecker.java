@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.os.Build;
 import android.os.Environment;
-import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,8 +13,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import me.drakeet.library.model.CrashCause;
-import me.drakeet.library.model.CrashLogs;
 import me.drakeet.library.ui.CatchActivity;
 
 /**
@@ -26,7 +23,6 @@ public class CrashWoodpecker implements Thread.UncaughtExceptionHandler {
 
     private SimpleDateFormat mFormatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     private Thread.UncaughtExceptionHandler mOriginHandler;
-    private CrashLogs mCrashLogs = new CrashLogs();
     private Context mContext;
     private String mVersion;
 
@@ -115,31 +111,19 @@ public class CrashWoodpecker implements Thread.UncaughtExceptionHandler {
     }
 
     private void startCatchActivity(Throwable throwable) {
-        CrashCause crashCause = new CrashCause();
+        String traces = getStackTrace(throwable);
+        Intent intent = new Intent();
+        intent.setClass(mContext, CatchActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(CatchActivity.EXTRA_CRASH_LOGS, traces.split("\n"));
+        mContext.startActivity(intent);
+    }
+
+    private String getStackTrace(Throwable throwable) {
         Writer writer = new StringWriter();
         PrintWriter printWriter = new PrintWriter(writer);
         throwable.printStackTrace(printWriter);
         printWriter.close();
-        crashCause.stackTrace = writer.toString();
-        mCrashLogs.crashCauses.add(crashCause);
-
-        Throwable next = throwable.getCause();
-        while (next != null) {
-            CrashCause nextCrashCause = new CrashCause();
-            writer = new StringWriter();
-            printWriter = new PrintWriter(writer);
-            next.printStackTrace(printWriter);
-            printWriter.close();
-            nextCrashCause.stackTrace = writer.toString();
-            mCrashLogs.crashCauses.add(crashCause);
-            next = next.getCause();
-        }
-
-        Intent intent = new Intent();
-        intent.setClass(mContext, CatchActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        String value = new Gson().toJson(mCrashLogs);
-        intent.putExtra(CatchActivity.EXTRA_CRASH_LOGS, value);
-        mContext.startActivity(intent);
+        return writer.toString();
     }
 }
