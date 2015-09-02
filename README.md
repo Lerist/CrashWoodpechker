@@ -29,6 +29,14 @@ public class ExampleApplication extends Application {
 
 **That is all!** CrashWoodpecker will automatically show a Activity when your app crash with uncaught exceptions in your debug build.
 
+## About
+
+I am a student in China, I love to read pure literature, love Japanese culture and love Hongkong music. At the same time, it is also very obsessed with writing code. If you have any questions or want to make friends with me, you can write to me: drakeet.me@gmail.com
+
+In addition, my blog: http://drakeet.me
+
+If you like my open source projects, you can follow me: https://github.com/drakeet
+
 ## Thanks
 
 Great Square: http://square.github.io
