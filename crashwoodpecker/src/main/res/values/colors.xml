@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="windowBackground">#373636</color>
+    <color name="trace_text">#FF6B68</color>
+    <color name="my_fault">#d0d9ff</color>
+
+</resources>

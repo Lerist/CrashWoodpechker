@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import java.io.IOException
 
 /**
  * Created by drakeet on 8/31/15.
@@ -16,7 +16,7 @@ public class MainActivity: AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById(R.id.button_crash)
-                .setOnClickListener {view -> throw Exception("hehe=.=")}
+                .setOnClickListener {view -> throw IOException("hehe =.=")}
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

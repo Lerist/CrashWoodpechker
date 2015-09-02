@@ -8,6 +8,7 @@
             android:icon="@mipmap/ic_launcher"
             android:name=".ui.CatchActivity"
             android:label="@string/crash_app_name"
+            android:theme="@style/Theme.Pecker"
             android:taskAffinity="me.drakeet.library">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

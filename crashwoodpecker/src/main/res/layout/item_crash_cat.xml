@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:minHeight="36dp"
     android:gravity="center_vertical">
 
+    <android.support.v4.widget.Space
+        android:id="@+id/space"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/tv_trace"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#212121"
+        android:textColor="@color/trace_text"
         tools:text="123, 123"/>
 
 </LinearLayout>

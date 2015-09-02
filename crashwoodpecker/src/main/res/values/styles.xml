@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Pecker"
+        parent="Base.Theme.Pecker"></style>
+
+    <style name="Base.Theme.Pecker"
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/windowBackground</item>
+    </style>
+
+    <style name="LineTextAppearance">
+        <item name="android:textColor">@color/my_fault</item>
+    </style>
+
+</resources>

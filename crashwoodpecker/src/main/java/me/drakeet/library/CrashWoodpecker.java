@@ -115,7 +115,13 @@ public class CrashWoodpecker implements Thread.UncaughtExceptionHandler {
         Intent intent = new Intent();
         intent.setClass(mContext, CatchActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(CatchActivity.EXTRA_CRASH_LOGS, traces.split("\n"));
+        String[] strings = traces.split("\n");
+        String[] newStrings = new String[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+            newStrings[i] = strings[i].trim();
+        }
+        intent.putExtra(CatchActivity.EXTRA_PACKAGE, mContext.getPackageName());
+        intent.putExtra(CatchActivity.EXTRA_CRASH_LOGS, newStrings);
         mContext.startActivity(intent);
     }
 
