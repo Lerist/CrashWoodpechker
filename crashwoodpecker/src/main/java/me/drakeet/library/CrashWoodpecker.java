@@ -31,23 +31,19 @@ public class CrashWoodpecker implements Thread.UncaughtExceptionHandler {
     }
 
     public void to(Context context) {
-        if (BuildConfig.DEBUG) {
-            mContext = context;
-            try {
-                PackageInfo info =
-                        context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-                mVersion = info.versionName + "(" + info.versionCode + ")";
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        mContext = context;
+        try {
+            PackageInfo info =
+                    context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            mVersion = info.versionName + "(" + info.versionCode + ")";
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     private CrashWoodpecker() {
-        if (BuildConfig.DEBUG) {
-            mOriginHandler = Thread.currentThread().getUncaughtExceptionHandler();
-            Thread.currentThread().setUncaughtExceptionHandler(this);
-        }
+        mOriginHandler = Thread.currentThread().getUncaughtExceptionHandler();
+        Thread.currentThread().setUncaughtExceptionHandler(this);
     }
 
     private boolean handleException(Throwable throwable) {
