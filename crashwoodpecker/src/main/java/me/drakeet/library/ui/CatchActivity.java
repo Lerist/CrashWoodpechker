@@ -27,7 +27,7 @@ public class CatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catch);
         parseIntent();
-        setTitle("Crashes in " + mPackageName);
+        if (mPackageName != null) setTitle("Crashes in " + mPackageName);
         setUpRecyclerView();
     }
 

@@ -49,7 +49,7 @@ public class CrashListAdapter extends RecyclerView.Adapter<CrashListAdapter.View
                 holder.title.setTextColor(0xffef4545);
             }
 
-            if (crash.contains(mPackageName)) {
+            if (mPackageName != null && crash.contains(mPackageName)) {
                 holder.itemView.setSelected(true);
                 int indexOfC = crash.indexOf("(");
                 String atPackage = crash.substring(0, indexOfC);

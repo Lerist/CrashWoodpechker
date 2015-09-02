@@ -1,7 +1,6 @@
 package me.drakeet.demo
 
 import android.app.Application
-import com.squareup.leakcanary.LeakCanary
 import me.drakeet.library.CrashWoodpecker
 
 /**
