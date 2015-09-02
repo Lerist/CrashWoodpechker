@@ -6,6 +6,15 @@ A Uncaught Exception Handler library like as Square's [LeakCanary](https://githu
 
 ## Getting started
 
+In your `build.gradle`:
+
+```gradle
+  //It may not take effect in maven, I upload in 21:03 Set 2, so that please waiting for it.
+  dependencies {
+   debugCompile 'me.drakeet.library:crashwoodpechker:0.9'
+  }
+```
+
 In your `Application` class:
 
 ```java
@@ -20,6 +29,9 @@ public class ExampleApplication extends Application {
 
 **That is all!** CrashWoodpecker will automatically show a Activity when your app crash with uncaught exceptions in your debug build.
 
+## Thanks
+
+Great Square: http://square.github.io
 
 License
 ============
