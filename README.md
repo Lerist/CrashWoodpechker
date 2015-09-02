@@ -1,1 +1,1 @@
-<img src="/art/s1.png" alt="screenshot" title="screenshot" width="486" height="270" />
+<img src="/art/s2.png" alt="screenshot" title="screenshot" width="486" height="270" />
